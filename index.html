@@ -5,717 +5,802 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Six-Month Strength Programme</title>
   <meta name="description" content="A focused six-month, 20-minute strength programme for kettlebell and dumbbell training at home." />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="theme-color" content="#13110C" />
   <meta property="og:title" content="Six-Month Strength Programme" />
   <meta property="og:description" content="Three short home strength sessions per week, built for consistency, cycling support, and long-term habit." />
   <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
     :root {
-      --bg: #0c0d0b;
-      --bg-2: #141510;
-      --bg-3: #1c1e18;
-      --surface: #222420;
-      --surface-2: #2a2d26;
-      --border: rgba(255,255,255,.08);
-      --border-2: rgba(255,255,255,.14);
-      --ink: #f0ede6;
-      --ink-2: #c8c4bb;
-      --ink-3: #7a7870;
-      --amber: #e8a020;
-      --amber-dim: rgba(232,160,32,.12);
-      --amber-dim-2: rgba(232,160,32,.2);
-      --green: #4a8c3f;
-      --green-dim: rgba(74,140,63,.15);
-      --red: #c0392b;
-      --radius-sm: 6px;
-      --radius: 12px;
-      --radius-lg: 20px;
-      --shadow: 0 2px 20px rgba(0,0,0,.4);
-      --shadow-lg: 0 8px 60px rgba(0,0,0,.5);
-      --max: 1100px;
-      --font-serif: Georgia, "Times New Roman", serif;
-      --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --paper:   #F3F0E8;
+      --paper-2: #EBE8DF;
+      --paper-3: #E2DFD6;
+      --ink:     #13110C;
+      --ink-2:   #5A574E;
+      --ink-3:   #9B9890;
+      --red:     #C41B2E;
+      --red-dim: rgba(196,27,46,.07);
+      --red-mid: rgba(196,27,46,.18);
+      --border:  rgba(19,17,12,.1);
+      --border-2: rgba(19,17,12,.18);
+      --green:   #2D6E41;
+      --green-dim: rgba(45,110,65,.1);
+
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body:    'Crimson Pro', Georgia, serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      --sidebar-w: 200px;
+      --pad: clamp(1.5rem, 4vw, 3.5rem);
+      --radius: 3px;
     }
 
+    /* ── RESET ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: var(--font-sans);
-      background: var(--bg);
+      background: var(--paper);
       color: var(--ink);
-      line-height: 1.6;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      padding-left: var(--sidebar-w);
     }
-
-    h1, h2, h3, h4 { line-height: 1.05; font-weight: 700; }
-    p, li, td { color: var(--ink-2); }
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1; font-weight: 800; }
+    p { color: var(--ink-2); }
     a { color: inherit; text-decoration: none; }
     button, input, select { font: inherit; }
     ul, ol { padding-left: 1.4rem; }
-    li { margin-bottom: .4rem; }
 
-    /* ── HERO ─────────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: grid;
-      align-items: end;
+    /* ── SIDEBAR ────────────────────────────────────────── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      z-index: 200;
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .sidebar::-webkit-scrollbar { display: none; }
+
+    .sidebar-logo {
+      padding: 1.5rem 1.25rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      width: 2rem; height: 2rem;
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: .82rem;
+      letter-spacing: .04em;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .65rem;
+    }
+
+    .sidebar-prog-title {
+      font-family: var(--font-display);
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(240,237,228,.38);
+      line-height: 1.5;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 1rem 0;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .48rem 1.25rem;
+      font-family: var(--font-display);
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(240,237,228,.38);
+      border-left: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .sidebar-nav a:hover { color: rgba(240,237,228,.8); }
+    .sidebar-nav a.active { color: var(--red); border-left-color: var(--red); }
+
+    .sidebar-nav-num {
+      font-family: var(--font-mono);
+      font-size: .58rem;
+      color: rgba(240,237,228,.18);
+      min-width: 1.2rem;
+    }
+
+    .sidebar-foot {
+      padding: 1rem 1.25rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .sidebar-foot-label {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: rgba(240,237,228,.28);
+      margin-bottom: .45rem;
+    }
+
+    .sidebar-bar {
+      height: 1.5px;
+      background: rgba(255,255,255,.1);
       overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        url("https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1800&q=82")
-        center / cover no-repeat;
+    .sidebar-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--red);
+      transition: width .5s ease;
     }
 
-    .hero-bg::after {
-      content: "";
+    .sidebar-pct {
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      font-weight: 700;
+      color: rgba(240,237,228,.45);
+      margin-top: .35rem;
+    }
+
+    /* ── MOBILE NAV ─────────────────────────────────────── */
+    .mobile-nav { display: none; }
+
+    /* ── HERO ─────────────────────────────────────────────*/
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-backdrop {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        160deg,
-        rgba(10,10,9,.92) 0%,
-        rgba(10,10,9,.75) 50%,
-        rgba(10,10,9,.5) 100%
-      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .hero-backdrop-word {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 24vw;
+      color: transparent;
+      -webkit-text-stroke: 1px #DDD9CF;
+      letter-spacing: -.02em;
+      line-height: 1;
+      white-space: nowrap;
     }
 
     .hero-content {
       position: relative;
       z-index: 1;
-      width: min(var(--max), 100%);
-      margin: 0 auto;
-      padding: clamp(2rem, 5vw, 4rem);
-      padding-bottom: clamp(3rem, 10vh, 6rem);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(3rem, 8vw, 6rem) var(--pad);
     }
 
-    .kicker {
+    .hero-kicker {
       display: inline-flex;
       align-items: center;
-      gap: .6rem;
-      margin-bottom: 1.5rem;
-      color: var(--amber);
-      font-size: .78rem;
+      gap: .65rem;
+      font-family: var(--font-mono);
+      font-size: .68rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .16em;
+      letter-spacing: .15em;
+      color: var(--red);
+      margin-bottom: 1.25rem;
+      animation: fadeUp .5s ease both .05s;
     }
 
-    .kicker-line {
-      width: 2rem;
-      height: 1.5px;
-      background: var(--amber);
-      flex-shrink: 0;
+    .kicker-rule {
+      display: block;
+      width: 1.5rem; height: 1px;
+      background: var(--red);
     }
 
     .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(3.2rem, 10vw, 8rem);
-      font-weight: 700;
-      color: var(--ink);
-      max-width: 14ch;
-      line-height: .95;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(3.8rem, 11vw, 9rem);
+      line-height: .88;
       letter-spacing: -.02em;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--amber);
+      color: var(--ink);
+      max-width: 11ch;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .5s ease both .15s;
     }
 
     .hero-sub {
-      max-width: 52ch;
-      margin-top: 1.5rem;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(240,237,230,.7);
-      line-height: 1.6;
+      max-width: 46ch;
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .5s ease both .25s;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: .75rem;
-      margin-top: 2.5rem;
+      animation: fadeUp .5s ease both .35s;
     }
 
+    /* ── BUTTONS ─────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: .5rem;
-      padding: .85rem 1.5rem;
-      border-radius: var(--radius-sm);
-      font-size: .92rem;
+      gap: .45rem;
+      padding: .8rem 1.5rem;
+      font-family: var(--font-display);
+      font-size: .82rem;
       font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
       cursor: pointer;
       border: none;
+      border-radius: var(--radius);
       transition: opacity .15s, transform .1s;
     }
-    .btn:hover { opacity: .88; }
+    .btn:hover { opacity: .82; }
     .btn:active { transform: scale(.97); }
 
-    .btn-primary {
-      background: var(--amber);
-      color: #1a0e00;
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,.1);
+    .btn-primary  { background: var(--ink); color: var(--paper); }
+    .btn-outline  {
+      background: transparent;
       color: var(--ink);
-      border: 1px solid var(--border-2);
-      backdrop-filter: blur(10px);
+      border: 1.5px solid var(--border-2);
     }
 
-    /* stats strip */
-    .stats-strip {
-      background: var(--bg-2);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .stats-inner {
-      width: min(var(--max), 100%);
-      margin: 0 auto;
-      padding: 0 clamp(1rem, 3vw, 2rem);
+    /* ── HERO STATS ──────────────────────────────────────── */
+    .hero-stats {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
     }
 
-    .stat {
-      padding: 1.5rem 1rem;
+    .hero-stat {
+      padding: 1.25rem var(--pad);
       border-right: 1px solid var(--border);
+      animation: heroFade .5s ease both;
     }
-    .stat:last-child { border-right: 0; }
+    .hero-stat:nth-child(1) { animation-delay: .4s; }
+    .hero-stat:nth-child(2) { animation-delay: .46s; }
+    .hero-stat:nth-child(3) { animation-delay: .52s; }
+    .hero-stat:nth-child(4) { animation-delay: .58s; border-right: 0; }
 
-    .stat-num {
+    .hero-stat-num {
       display: block;
-      font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      color: var(--amber);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--ink);
       line-height: 1;
-      margin-bottom: .3rem;
+      margin-bottom: .2rem;
     }
 
-    .stat-label {
+    .hero-stat-label {
       display: block;
-      font-size: .8rem;
-      color: var(--ink-3);
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 500;
       text-transform: uppercase;
       letter-spacing: .1em;
-      font-weight: 600;
-    }
-
-    /* ── NAV ──────────────────────────────────────────── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(12,13,11,.88);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    nav::-webkit-scrollbar { display: none; }
-
-    .nav-inner {
-      width: min(var(--max), 100%);
-      margin: 0 auto;
-      padding: 0 clamp(1rem, 3vw, 2rem);
-      display: flex;
-      gap: .25rem;
-    }
-
-    nav a {
-      display: block;
-      padding: .9rem .85rem;
-      font-size: .82rem;
-      font-weight: 600;
       color: var(--ink-3);
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      white-space: nowrap;
-      border-bottom: 2px solid transparent;
-      transition: color .15s, border-color .15s;
-    }
-    nav a:hover { color: var(--ink); border-bottom-color: var(--amber); }
-
-    /* ── MAIN LAYOUT ──────────────────────────────────── */
-    main {
-      width: min(var(--max), 100%);
-      margin: 0 auto;
-      padding: 0 clamp(1rem, 3vw, 2rem);
     }
 
+    /* ── SECTIONS ────────────────────────────────────────── */
     section {
-      padding: clamp(3rem, 8vw, 5.5rem) 0;
+      padding: clamp(3rem, 8vw, 5.5rem) var(--pad);
       border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
 
-    .section-label {
+    .section-head { margin-bottom: 2.5rem; }
+
+    .section-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      margin-bottom: 1rem;
-      font-size: .75rem;
+      font-family: var(--font-mono);
+      font-size: .65rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .14em;
-      color: var(--amber);
+      letter-spacing: .15em;
+      color: var(--red);
+      margin-bottom: .7rem;
     }
 
-    .section-label::before {
-      content: "";
-      width: 1.2rem;
-      height: 1.5px;
-      background: var(--amber);
-    }
+    .section-num-label { color: var(--ink-3); }
 
     .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: .92;
+      letter-spacing: -.01em;
       color: var(--ink);
-      letter-spacing: -.02em;
       margin-bottom: .75rem;
     }
 
     .section-lead {
-      max-width: 60ch;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--ink-2);
+      max-width: 54ch;
       line-height: 1.65;
     }
 
-    .section-head {
-      margin-bottom: 2.5rem;
+    .section-wm {
+      position: absolute;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 16rem;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--paper-3);
+      top: -1.5rem;
+      right: -1rem;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
     }
 
-    /* ── START SECTION ────────────────────────────────── */
+    /* ── START CARDS ─────────────────────────────────────── */
     .start-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
       background: var(--border);
+      gap: 1px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
       margin-bottom: 1.5rem;
     }
 
     .start-card {
       padding: 1.75rem 1.5rem;
-      background: var(--bg-2);
+      background: var(--paper);
     }
 
-    .start-card-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      display: grid;
-      place-items: center;
-      margin-bottom: 1rem;
-      background: var(--amber-dim);
-      border-radius: var(--radius-sm);
-      font-size: 1.1rem;
+    .start-card-label {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      color: var(--red);
+      margin-bottom: .65rem;
     }
 
     .start-card h3 {
-      font-size: .75rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--amber);
-      margin-bottom: .6rem;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: .45rem;
     }
 
-    .start-card p { font-size: .95rem; color: var(--ink-2); }
+    .start-card p { font-size: .92rem; }
 
     .alert {
       display: flex;
       gap: 1rem;
-      padding: 1.25rem 1.5rem;
-      background: rgba(192,57,43,.1);
-      border: 1px solid rgba(192,57,43,.3);
-      border-radius: var(--radius);
-      color: var(--ink-2);
-      font-size: .92rem;
+      padding: 1.15rem 1.5rem;
+      background: var(--red-dim);
+      border: 1px solid var(--red-mid);
+      font-size: .88rem;
     }
+    .alert-icon { color: var(--red); flex-shrink: 0; }
+    .alert strong { color: var(--red); }
+    .alert p { color: var(--ink-2); }
 
-    .alert-icon { flex-shrink: 0; color: #e74c3c; font-size: 1.1rem; }
-    .alert strong { color: #e74c3c; }
+    /* ── PHASES ──────────────────────────────────────────── */
+    .phases-scroll {
+      overflow-x: auto;
+      scrollbar-width: none;
+      border: 1px solid var(--border);
+    }
+    .phases-scroll::-webkit-scrollbar { display: none; }
 
-    /* ── PROGRAMME PHASES ─────────────────────────────── */
     .phases {
       display: grid;
-      grid-template-columns: repeat(6, minmax(160px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow-x: auto;
-      overflow-y: hidden;
+      grid-template-columns: repeat(6, minmax(175px, 1fr));
+      min-width: 820px;
     }
 
     .phase {
-      padding: 1.5rem 1.25rem;
-      background: var(--bg-2);
-      display: flex;
-      flex-direction: column;
-      gap: .85rem;
-      min-width: 160px;
+      padding: 1.75rem 1.25rem;
+      border-right: 1px solid var(--border);
+      background: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+    .phase:last-child { border-right: 0; }
+
+    .phase-ghost {
+      position: absolute;
+      top: -.75rem; right: -.25rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 5.5rem;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--paper-3);
+      line-height: 1;
+      pointer-events: none;
     }
 
-    .phase-num {
-      width: 2rem;
-      height: 2rem;
-      display: grid;
-      place-items: center;
-      background: var(--surface-2);
-      border-radius: 50%;
-      font-size: .8rem;
-      font-weight: 800;
-      color: var(--amber);
+    .phase-index {
+      font-family: var(--font-mono);
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--red);
+      margin-bottom: .3rem;
     }
 
     .phase-weeks {
-      font-size: .7rem;
+      font-family: var(--font-display);
+      font-size: .82rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--amber);
+      letter-spacing: .08em;
+      color: var(--ink-3);
+      margin-bottom: .8rem;
     }
 
     .phase h3 {
-      font-size: .88rem;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
       color: var(--ink);
-      text-transform: none;
-      letter-spacing: 0;
+      margin-bottom: .45rem;
     }
 
-    .phase p {
-      font-size: .82rem;
-      color: var(--ink-3);
-      line-height: 1.5;
-      flex: 1;
-    }
+    .phase p { font-size: .82rem; color: var(--ink-3); line-height: 1.5; }
 
-    /* ── SESSIONS ─────────────────────────────────────── */
-    .sessions-layout {
+    /* ── SESSIONS ────────────────────────────────────────── */
+    .sessions-grid {
       display: grid;
-      grid-template-columns: 200px 1fr 1fr;
-      gap: 1px;
+      grid-template-columns: 190px 1fr 1fr;
       background: var(--border);
+      gap: 1px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .session-card {
-      background: var(--bg-2);
-      padding: 1.75rem 1.5rem;
+      padding: 1.75rem 1.4rem;
+      background: var(--paper);
     }
 
-    .session-card h3 {
-      font-size: .75rem;
+    .session-label {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .12em;
-      color: var(--amber);
-      margin-bottom: 1.1rem;
+      color: var(--red);
+      margin-bottom: 1rem;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    table { width: 100%; border-collapse: collapse; }
 
     th, td {
       text-align: left;
-      padding: .6rem .5rem;
+      padding: .48rem 0;
       border-bottom: 1px solid var(--border);
-      vertical-align: top;
       font-size: .88rem;
+      vertical-align: top;
     }
 
     th {
-      color: var(--ink-3);
-      font-size: .72rem;
+      font-family: var(--font-mono);
+      font-size: .6rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .1em;
+      color: var(--ink-3);
     }
 
     td { color: var(--ink-2); }
+    td:last-child { font-family: var(--font-mono); font-size: .78rem; color: var(--ink-3); }
     tr:last-child td { border-bottom: 0; }
 
     .session-note {
       margin-top: 1rem;
-      font-size: .82rem;
+      font-size: .8rem;
       color: var(--ink-3);
+      font-style: italic;
     }
 
-    .session-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .session-card ul li {
-      padding: .5rem 0;
+    .warmup-list { list-style: none; padding: 0; }
+    .warmup-list li {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .4rem 0;
       border-bottom: 1px solid var(--border);
       font-size: .88rem;
       color: var(--ink-2);
-      display: flex;
-      align-items: center;
-      gap: .6rem;
     }
-
-    .session-card ul li::before {
+    .warmup-list li::before {
       content: "";
-      width: .35rem;
-      height: .35rem;
-      background: var(--amber);
+      width: 3px; height: 3px;
       border-radius: 50%;
+      background: var(--red);
       flex-shrink: 0;
     }
+    .warmup-list li:last-child { border-bottom: 0; }
 
-    .session-card ul li:last-child { border-bottom: 0; }
-
-    .swing-callout {
-      padding: 1.25rem 1.5rem;
-      background: var(--amber-dim);
-      border: 1px solid var(--amber-dim-2);
-      border-radius: var(--radius);
+    .swing-note {
+      background: var(--red-dim);
+      border: 1px solid var(--red-mid);
+      padding: 1.15rem 1.4rem;
+      font-size: .9rem;
     }
+    .swing-note strong { color: var(--red); }
+    .swing-note p { color: var(--ink-2); }
 
-    .swing-callout strong { color: var(--amber); }
-    .swing-callout p { font-size: .92rem; }
+    /* ── EXERCISE LIBRARY ────────────────────────────────── */
+    .exercises-list { border: 1px solid var(--border); }
 
-    /* ── EXERCISE LIBRARY ─────────────────────────────── */
-    .exercise-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    details.exercise {
-      background: var(--bg-2);
-    }
+    details.exercise { border-bottom: 1px solid var(--border); }
+    details.exercise:last-child { border-bottom: 0; }
 
     .exercise summary {
       cursor: pointer;
-      padding: 1.25rem 1.5rem;
+      list-style: none;
+      padding: 1.1rem 1.4rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      list-style: none;
+      gap: 1.25rem;
       user-select: none;
+      background: var(--paper);
+      transition: background .15s;
     }
+    .exercise summary:hover { background: var(--paper-2); }
     .exercise summary::-webkit-details-marker { display: none; }
+    .exercise[open] > summary {
+      background: var(--paper-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exercise-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--paper-3);
+      min-width: 1.8rem;
+      line-height: 1;
+      transition: color .15s;
+    }
+    .exercise[open] .exercise-num { color: var(--red); }
 
     .exercise-name {
-      font-size: .95rem;
-      font-weight: 700;
+      flex: 1;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--ink);
+      letter-spacing: .01em;
+    }
+
+    .exercise-session {
+      font-family: var(--font-mono);
+      font-size: .58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--ink-3);
     }
 
     .exercise-toggle {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.4rem; height: 1.4rem;
       display: grid;
       place-items: center;
-      background: var(--surface-2);
+      border: 1.5px solid var(--border-2);
       border-radius: 50%;
-      font-size: .8rem;
-      color: var(--amber);
+      font-size: .72rem;
+      color: var(--ink-3);
       flex-shrink: 0;
-      transition: background .15s;
+      transition: border-color .15s, background .15s, color .15s;
     }
-
-    .exercise[open] .exercise-toggle { background: var(--amber); color: #1a0e00; }
-    .exercise[open] summary { border-bottom: 1px solid var(--border); }
+    .exercise[open] .exercise-toggle {
+      border-color: var(--red);
+      background: var(--red);
+      color: #fff;
+    }
 
     .exercise-body {
-      padding: 1.25rem 1.5rem;
+      padding: 1.4rem;
+      background: var(--paper-2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      align-items: start;
     }
 
-    .exercise-body p {
-      font-size: .9rem;
-      color: var(--ink-2);
-      margin-bottom: 1rem;
-    }
+    .exercise-desc { font-size: .93rem; color: var(--ink-2); line-height: 1.65; }
 
     .video-wrap {
       aspect-ratio: 16/9;
-      border-radius: var(--radius-sm);
       overflow: hidden;
-      background: var(--bg);
+      background: var(--paper-3);
     }
+    .video-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-    .video-wrap iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-
-    /* ── TRACKER ──────────────────────────────────────── */
-    .tracker-header {
+    /* ── TRACKER ─────────────────────────────────────────── */
+    .tracker-meta {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      padding: 1.5rem;
-      background: var(--bg-2);
+      padding: 1.15rem 1.4rem;
+      background: var(--paper-2);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
-    .progress-area { flex: 1; min-width: 240px; }
+    .tracker-progress { flex: 1; min-width: 200px; }
 
-    .progress-meta {
+    .tracker-progress-head {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: .6rem;
+      margin-bottom: .45rem;
     }
 
-    .progress-count {
-      font-size: .88rem;
-      font-weight: 700;
+    .tracker-count {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--ink-2);
+    }
+
+    .tracker-pct {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.5rem;
       color: var(--ink);
-    }
-
-    .progress-pct {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      color: var(--amber);
-      font-weight: 700;
+      line-height: 1;
     }
 
     .progress-track {
-      height: 4px;
-      background: var(--surface-2);
-      border-radius: 999px;
+      height: 2px;
+      background: var(--border);
       overflow: hidden;
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: var(--amber);
-      transition: width .3s ease;
+      background: var(--red);
+      transition: width .4s ease;
     }
 
     .weeks-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: .75rem;
+      background: var(--border);
+      gap: 1px;
+      border: 1px solid var(--border);
     }
 
     .week-card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: .85rem;
-      transition: border-color .2s, background .2s;
+      background: var(--paper);
+      padding: .8rem .7rem;
+      transition: background .2s;
     }
-
-    .week-card.complete {
-      border-color: rgba(74,140,63,.5);
-      background: var(--green-dim);
-    }
+    .week-card.complete { background: var(--green-dim); }
 
     .week-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: .6rem;
+      margin-bottom: .55rem;
     }
 
     .week-num {
-      font-size: .75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .1em;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.05rem;
       color: var(--ink-3);
+      line-height: 1;
     }
+    .week-card.complete .week-num { color: var(--green); }
 
     .week-count {
-      font-size: .7rem;
-      font-weight: 700;
-      color: var(--amber);
+      font-family: var(--font-mono);
+      font-size: .58rem;
+      color: var(--ink-3);
     }
-
     .week-card.complete .week-count { color: var(--green); }
 
     .check-row {
       display: flex;
       align-items: center;
-      gap: .5rem;
-      padding: .25rem 0;
+      gap: .38rem;
+      padding: .16rem 0;
       cursor: pointer;
-      font-size: .75rem;
+      font-family: var(--font-mono);
+      font-size: .58rem;
       color: var(--ink-3);
     }
-
-    .check-row:hover { color: var(--ink-2); }
+    .check-row:hover { color: var(--ink); }
 
     input[type="checkbox"] {
-      width: .9rem;
-      height: .9rem;
-      accent-color: var(--amber);
+      width: .72rem; height: .72rem;
+      accent-color: var(--red);
       cursor: pointer;
       flex-shrink: 0;
     }
 
-    /* ── REMINDERS ────────────────────────────────────── */
+    /* ── REMINDERS ───────────────────────────────────────── */
     .reminder-layout {
       display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 1.5rem;
+      grid-template-columns: 1fr 310px;
+      gap: 2rem;
       align-items: start;
     }
 
-    .reminder-info h3 {
-      font-size: .75rem;
+    .reminder-text h3 {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .12em;
-      color: var(--amber);
-      margin-bottom: .75rem;
+      letter-spacing: .13em;
+      color: var(--red);
+      margin-bottom: .7rem;
     }
 
-    .reminder-info p {
-      font-size: .92rem;
-      color: var(--ink-2);
-      margin-bottom: .75rem;
-    }
+    .reminder-text p { font-size: .93rem; margin-bottom: .7rem; }
 
     .reminder-form {
-      padding: 1.5rem;
-      background: var(--bg-2);
+      padding: 1.4rem;
+      background: var(--paper-2);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
       display: grid;
       gap: 1rem;
     }
 
-    .field {
-      display: grid;
-      gap: .4rem;
-    }
+    .field { display: grid; gap: .38rem; }
 
     .field label {
-      font-size: .75rem;
+      font-family: var(--font-mono);
+      font-size: .62rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .1em;
@@ -724,86 +809,125 @@
 
     .field input {
       width: 100%;
-      padding: .7rem .9rem;
-      background: var(--surface);
+      padding: .65rem .85rem;
+      background: var(--paper);
       border: 1px solid var(--border-2);
-      border-radius: var(--radius-sm);
-      color: var(--ink);
-      font-size: .92rem;
-    }
-
-    .field input:focus {
-      outline: none;
-      border-color: var(--amber);
-    }
-
-    /* ── RULES ────────────────────────────────────────── */
-    .rules-list {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
       border-radius: var(--radius);
-      overflow: hidden;
+      color: var(--ink);
+      font-size: .9rem;
     }
+    .field input:focus { outline: none; border-color: var(--ink); }
 
-    .rules-list li {
+    /* ── RULES ───────────────────────────────────────────── */
+    .rules-list { list-style: none; padding: 0; }
+
+    .rule-item {
       display: grid;
-      grid-template-columns: 3rem 1fr;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.25rem 1.5rem;
-      background: var(--bg-2);
-      color: var(--ink-2);
-      font-size: .95rem;
-      margin: 0;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 1.25rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
     }
+    .rule-item:last-child { border-bottom: 0; }
 
     .rule-num {
-      font-family: var(--font-serif);
-      font-size: 1.6rem;
-      color: var(--surface-2);
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.2rem;
+      color: var(--paper-3);
       line-height: 1;
       text-align: right;
     }
 
-    /* ── FOOTER ───────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem clamp(1rem, 3vw, 2rem);
-      font-size: .82rem;
-      color: var(--ink-3);
-      text-align: center;
-    }
-
-    footer code {
-      font-family: "SF Mono", "Fira Code", monospace;
+    .rule-text {
+      font-size: .98rem;
       color: var(--ink-2);
-      background: var(--surface);
-      padding: .1em .4em;
-      border-radius: 3px;
+      padding-top: .35rem;
+      line-height: 1.55;
     }
 
-    /* ── RESPONSIVE ───────────────────────────────────── */
-    @media (max-width: 900px) {
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .stat:nth-child(2) { border-right: 0; }
-      .stat:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      padding: 1.75rem var(--pad);
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--ink-3);
+      border-top: 1px solid var(--border);
+    }
+
+    footer code { color: var(--ink-2); }
+
+    /* ── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 860px) {
+      body { padding-left: 0; padding-top: 2.8rem; }
+
+      .sidebar { display: none; }
+
+      .mobile-nav {
+        display: block;
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 200;
+        background: var(--ink);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .mobile-nav::-webkit-scrollbar { display: none; }
+
+      .mobile-nav-inner {
+        display: flex;
+        padding: 0 1rem;
+        gap: .1rem;
+        white-space: nowrap;
+      }
+
+      .mobile-nav-inner a {
+        display: block;
+        padding: .72rem .6rem;
+        font-family: var(--font-mono);
+        font-size: .62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        color: rgba(240,237,228,.4);
+        border-bottom: 2px solid transparent;
+        transition: color .15s, border-color .15s;
+      }
+      .mobile-nav-inner a:hover,
+      .mobile-nav-inner a.active { color: var(--red); border-bottom-color: var(--red); }
+
+      section { scroll-margin-top: 2.8rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-stat:nth-child(2) { border-right: 0; }
+      .hero-stat:nth-child(1),
+      .hero-stat:nth-child(2) { border-bottom: 1px solid var(--border); }
       .start-grid { grid-template-columns: 1fr; }
-      .sessions-layout { grid-template-columns: 1fr; }
+      .sessions-grid { grid-template-columns: 1fr; }
       .weeks-grid { grid-template-columns: repeat(4, 1fr); }
       .reminder-layout { grid-template-columns: 1fr; }
-      .exercise-grid { grid-template-columns: 1fr; }
+      .exercise-body { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
+      .hero h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
+      .hero-backdrop-word { font-size: 50vw; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-stat { border-right: 0 !important; border-bottom: 1px solid var(--border); }
+      .hero-stat:last-child { border-bottom: 0; }
       .weeks-grid { grid-template-columns: repeat(3, 1fr); }
-      .stats-inner { grid-template-columns: 1fr; }
-      .stat { border-right: 0; border-bottom: 1px solid var(--border); }
-      .stat:last-child { border-bottom: 0; }
       .hero-actions { flex-direction: column; }
       .btn { width: 100%; justify-content: center; }
     }
@@ -813,147 +937,193 @@
     }
 
     @media print {
-      .hero, nav, iframe, .tracker-header, .reminder-form, button { display: none !important; }
-      body { background: white; color: black; }
-      main { width: 100%; }
+      .sidebar, .mobile-nav, iframe, .tracker-meta,
+      .reminder-form, button { display: none !important; }
+      body { background: white; color: black; padding: 0; }
       section { page-break-inside: avoid; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── HERO ─────────────────────────────────────────── -->
+  <!-- ── SIDEBAR ─────────────────────────────────────────── -->
+  <aside class="sidebar" aria-label="Navigation">
+    <div class="sidebar-logo">
+      <div class="logo-mark">SP</div>
+      <div class="sidebar-prog-title">Six-Month<br>Strength<br>Programme</div>
+    </div>
+    <nav class="sidebar-nav" aria-label="Page sections">
+      <a href="#start" data-nav><span class="sidebar-nav-num">01</span>Start</a>
+      <a href="#programme" data-nav><span class="sidebar-nav-num">02</span>Programme</a>
+      <a href="#sessions" data-nav><span class="sidebar-nav-num">03</span>Sessions</a>
+      <a href="#exercises" data-nav><span class="sidebar-nav-num">04</span>Exercises</a>
+      <a href="#tracker" data-nav><span class="sidebar-nav-num">05</span>Tracker</a>
+      <a href="#reminders" data-nav><span class="sidebar-nav-num">06</span>Reminders</a>
+      <a href="#rules" data-nav><span class="sidebar-nav-num">07</span>Rules</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="sidebar-foot-label">Progress</div>
+      <div class="sidebar-bar">
+        <div class="sidebar-bar-fill" id="sidebarFill"></div>
+      </div>
+      <div class="sidebar-pct" id="sidebarPct">0%</div>
+    </div>
+  </aside>
+
+  <!-- ── MOBILE NAV ──────────────────────────────────────── -->
+  <nav class="mobile-nav" aria-label="Page sections">
+    <div class="mobile-nav-inner">
+      <a href="#start" data-nav>Start</a>
+      <a href="#programme" data-nav>Programme</a>
+      <a href="#sessions" data-nav>Sessions</a>
+      <a href="#exercises" data-nav>Exercises</a>
+      <a href="#tracker" data-nav>Tracker</a>
+      <a href="#reminders" data-nav>Reminders</a>
+      <a href="#rules" data-nav>Rules</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
   <header class="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-backdrop" aria-hidden="true">
+      <div class="hero-backdrop-word">STRENGTH</div>
+    </div>
     <div class="hero-content">
-      <div class="kicker"><span class="kicker-line"></span>Home strength plan</div>
-      <h1>Six-Month <em>Strength</em> Programme</h1>
-      <p class="hero-sub">Short kettlebell and dumbbell sessions built around good reps, steady progression, and a plan that survives busy weeks.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#sessions">Start training</a>
-        <a class="btn btn-ghost" href="#tracker">Open tracker</a>
+      <div>
+        <div class="hero-kicker">
+          <span class="kicker-rule"></span>
+          Home training plan
+        </div>
+        <h1>Six-Month<br>Strength<br>Programme</h1>
+        <p class="hero-sub">Short kettlebell and dumbbell sessions built around good reps, steady progression, and a plan that survives busy weeks.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#sessions">Start training</a>
+          <a class="btn btn-outline" href="#tracker">Open tracker</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats" aria-label="Programme summary">
+      <div class="hero-stat">
+        <span class="hero-stat-num">24</span>
+        <span class="hero-stat-label">Weeks of progression</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">20</span>
+        <span class="hero-stat-label">Minutes per session</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">3+1</span>
+        <span class="hero-stat-label">Sessions per week</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">2</span>
+        <span class="hero-stat-label">Core workouts</span>
       </div>
     </div>
   </header>
 
-  <!-- ── STATS ─────────────────────────────────────────── -->
-  <div class="stats-strip" aria-label="Programme summary">
-    <div class="stats-inner">
-      <div class="stat"><span class="stat-num">24</span><span class="stat-label">Weeks of progression</span></div>
-      <div class="stat"><span class="stat-num">20</span><span class="stat-label">Minutes per session</span></div>
-      <div class="stat"><span class="stat-num">3+1</span><span class="stat-label">Sessions per week</span></div>
-      <div class="stat"><span class="stat-num">2</span><span class="stat-label">Core workouts</span></div>
-    </div>
-  </div>
-
-  <!-- ── NAV ───────────────────────────────────────────── -->
-  <nav aria-label="Page sections">
-    <div class="nav-inner">
-      <a href="#start">Start</a>
-      <a href="#programme">Programme</a>
-      <a href="#sessions">Sessions</a>
-      <a href="#exercises">Exercises</a>
-      <a href="#tracker">Tracker</a>
-      <a href="#reminders">Reminders</a>
-      <a href="#rules">Rules</a>
-    </div>
-  </nav>
-
-  <!-- ── MAIN ──────────────────────────────────────────── -->
+  <!-- ── MAIN ──────────────────────────────────────────────── -->
   <main>
 
-    <!-- START -->
+    <!-- 01 START -->
     <section id="start">
+      <span class="section-wm" aria-hidden="true">01</span>
       <div class="section-head">
-        <div class="section-label">Begin here</div>
-        <h2 class="section-title">Start here</h2>
+        <div class="section-eyebrow"><span class="section-num-label">01 —</span>&nbsp;Begin here</div>
+        <h2 class="section-title">Start Here</h2>
         <p class="section-lead">Use this as a low-friction strength habit — enough stimulus to matter, not so much soreness that it interferes with cycling or life.</p>
       </div>
-
       <div class="start-grid">
         <div class="start-card">
-          <div class="start-card-icon" aria-hidden="true">🎯</div>
-          <h3>Goal</h3>
+          <div class="start-card-label">Goal</div>
+          <h3>Build strength</h3>
           <p>Build strength, preserve muscle, improve posture, support mood, and protect the lower back.</p>
         </div>
         <div class="start-card">
-          <div class="start-card-icon" aria-hidden="true">⚡</div>
-          <h3>Effort</h3>
+          <div class="start-card-label">Effort</div>
+          <h3>Two reps left</h3>
           <p>Finish most sets with 2–3 good reps in reserve. Smooth form beats fatigue chasing.</p>
         </div>
         <div class="start-card">
-          <div class="start-card-icon" aria-hidden="true">🏋️</div>
-          <h3>Equipment</h3>
+          <div class="start-card-label">Equipment</div>
+          <h3>Minimal kit</h3>
           <p>One kettlebell, a pair of dumbbells, and enough floor space to move cleanly.</p>
         </div>
       </div>
-
       <div class="alert" role="alert">
         <span class="alert-icon" aria-hidden="true">⚠</span>
         <p><strong>Safety:</strong> Stop if you get chest pain, faintness, severe breathlessness, sharp joint pain, neurological symptoms, or back pain that does not settle. Get medical advice if unsure.</p>
       </div>
     </section>
 
-    <!-- PROGRAMME -->
+    <!-- 02 PROGRAMME -->
     <section id="programme">
+      <span class="section-wm" aria-hidden="true">02</span>
       <div class="section-head">
-        <div class="section-label">The plan</div>
-        <h2 class="section-title">Six-month build</h2>
+        <div class="section-eyebrow"><span class="section-num-label">02 —</span>&nbsp;The plan</div>
+        <h2 class="section-title">Six-Month Build</h2>
         <p class="section-lead">Each phase has one job. Stay with the phase you're in, then progress when the work feels repeatable.</p>
       </div>
-
-      <div class="phases" role="list">
-        <div class="phase" role="listitem">
-          <div class="phase-num">1</div>
-          <div class="phase-weeks">Weeks 1–4</div>
-          <h3>Learn the movements</h3>
-          <p>Three sessions weekly. Two to three rounds. Easy weights. Hold swings until the hinge is comfortable.</p>
-        </div>
-        <div class="phase" role="listitem">
-          <div class="phase-num">2</div>
-          <div class="phase-weeks">Weeks 5–8</div>
-          <h3>Build consistency</h3>
-          <p>Three sessions weekly. Three rounds. Add reverse lunges and increase reps gradually.</p>
-        </div>
-        <div class="phase" role="listitem">
-          <div class="phase-num">3</div>
-          <div class="phase-weeks">Weeks 9–12</div>
-          <h3>Practice swings</h3>
-          <p>Start with two sets of ten swings, then complete the normal strength work.</p>
-        </div>
-        <div class="phase" role="listitem">
-          <div class="phase-num">4</div>
-          <div class="phase-weeks">Weeks 13–16</div>
-          <h3>Load progressively</h3>
-          <p>Three to four rounds. Add load once twelve clean reps are comfortable.</p>
-        </div>
-        <div class="phase" role="listitem">
-          <div class="phase-num">5</div>
-          <div class="phase-weeks">Weeks 17–20</div>
-          <h3>Condition strength</h3>
-          <p>Use circuits with a swing, squat or hinge, row or press, and carry or core slot.</p>
-        </div>
-        <div class="phase" role="listitem">
-          <div class="phase-num">6</div>
-          <div class="phase-weeks">Weeks 21–24</div>
-          <h3>Maintain the habit</h3>
-          <p>Repeat A/B sessions, progress slowly, and keep the routine alive without chasing exhaustion.</p>
+      <div class="phases-scroll">
+        <div class="phases" role="list">
+          <div class="phase" role="listitem">
+            <div class="phase-ghost" aria-hidden="true">1</div>
+            <div class="phase-index">Phase 01</div>
+            <div class="phase-weeks">Weeks 1–4</div>
+            <h3>Learn the movements</h3>
+            <p>Three sessions weekly. Two to three rounds. Easy weights. Hold swings until the hinge is comfortable.</p>
+          </div>
+          <div class="phase" role="listitem">
+            <div class="phase-ghost" aria-hidden="true">2</div>
+            <div class="phase-index">Phase 02</div>
+            <div class="phase-weeks">Weeks 5–8</div>
+            <h3>Build consistency</h3>
+            <p>Three sessions weekly. Three rounds. Add reverse lunges and increase reps gradually.</p>
+          </div>
+          <div class="phase" role="listitem">
+            <div class="phase-ghost" aria-hidden="true">3</div>
+            <div class="phase-index">Phase 03</div>
+            <div class="phase-weeks">Weeks 9–12</div>
+            <h3>Practice swings</h3>
+            <p>Start with two sets of ten swings, then complete the normal strength work.</p>
+          </div>
+          <div class="phase" role="listitem">
+            <div class="phase-ghost" aria-hidden="true">4</div>
+            <div class="phase-index">Phase 04</div>
+            <div class="phase-weeks">Weeks 13–16</div>
+            <h3>Load progressively</h3>
+            <p>Three to four rounds. Add load once twelve clean reps are comfortable.</p>
+          </div>
+          <div class="phase" role="listitem">
+            <div class="phase-ghost" aria-hidden="true">5</div>
+            <div class="phase-index">Phase 05</div>
+            <div class="phase-weeks">Weeks 17–20</div>
+            <h3>Condition strength</h3>
+            <p>Use circuits with a swing, squat or hinge, row or press, and carry or core slot.</p>
+          </div>
+          <div class="phase" role="listitem">
+            <div class="phase-ghost" aria-hidden="true">6</div>
+            <div class="phase-index">Phase 06</div>
+            <div class="phase-weeks">Weeks 21–24</div>
+            <h3>Maintain the habit</h3>
+            <p>Repeat A/B sessions, progress slowly, and keep the routine alive without chasing exhaustion.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SESSIONS -->
+    <!-- 03 SESSIONS -->
     <section id="sessions">
+      <span class="section-wm" aria-hidden="true">03</span>
       <div class="section-head">
-        <div class="section-label">Training</div>
-        <h2 class="section-title">The sessions</h2>
-        <p class="section-lead">Warm up, alternate Session A and Session B, and add swing practice from week 9 once technique is solid. Default rhythm: Monday, Wednesday, Friday.</p>
+        <div class="section-eyebrow"><span class="section-num-label">03 —</span>&nbsp;Training</div>
+        <h2 class="section-title">The Sessions</h2>
+        <p class="section-lead">Warm up, alternate Session A and Session B, and add swing practice from week 9. Default rhythm: Monday, Wednesday, Friday.</p>
       </div>
-
-      <div class="sessions-layout">
+      <div class="sessions-grid">
         <div class="session-card">
-          <h3>Warm-up · 2 min</h3>
-          <ul>
+          <div class="session-label">Warm-up · 2 min</div>
+          <ul class="warmup-list">
             <li>March on spot — 30 s</li>
             <li>Arm circles — 30 s</li>
             <li>Hip hinges — 30 s</li>
@@ -962,7 +1132,7 @@
           <p class="session-note">Never skip. Two minutes protects joints and primes the movement patterns you're about to train.</p>
         </div>
         <div class="session-card">
-          <h3>Session A</h3>
+          <div class="session-label">Session A</div>
           <table>
             <thead><tr><th>Exercise</th><th>Start</th></tr></thead>
             <tbody>
@@ -975,7 +1145,7 @@
           <p class="session-note">Weeks 1–4: 2–3 rounds. Later: 3–4 rounds.</p>
         </div>
         <div class="session-card">
-          <h3>Session B</h3>
+          <div class="session-label">Session B</div>
           <table>
             <thead><tr><th>Exercise</th><th>Start</th></tr></thead>
             <tbody>
@@ -988,120 +1158,135 @@
           <p class="session-note">Start lunges in week 5 if the first month needs to be gentler.</p>
         </div>
       </div>
-
-      <div class="swing-callout">
+      <div class="swing-note">
         <p><strong>From week 9:</strong> add swing practice at the start. Weeks 9–12: 2 × 10 swings. Weeks 13–16: 3 × 10–15 swings. From week 17: 15 swings in each circuit if technique is clean.</p>
       </div>
     </section>
 
-    <!-- EXERCISE LIBRARY -->
+    <!-- 04 EXERCISES -->
     <section id="exercises">
+      <span class="section-wm" aria-hidden="true">04</span>
       <div class="section-head">
-        <div class="section-label">Reference</div>
-        <h2 class="section-title">Exercise library</h2>
+        <div class="section-eyebrow"><span class="section-num-label">04 —</span>&nbsp;Reference</div>
+        <h2 class="section-title">Exercise Library</h2>
         <p class="section-lead">Open any exercise for a plain-English cue and a demonstration video.</p>
       </div>
-
-      <div class="exercise-grid">
+      <div class="exercises-list">
 
         <details class="exercise" id="ex-goblet">
           <summary>
-            <span class="exercise-name">Goblet squat</span>
+            <span class="exercise-num">01</span>
+            <span class="exercise-name">Goblet Squat</span>
+            <span class="exercise-session">Session A</span>
             <span class="exercise-toggle" aria-hidden="true">+</span>
           </summary>
           <div class="exercise-body">
-            <p>Hold the kettlebell close to your chest. Sit down between your hips as if lowering into a chair. Keep your chest up and stand by pushing the floor away.</p>
+            <p class="exercise-desc">Hold the kettlebell close to your chest. Sit down between your hips as if lowering into a chair. Keep your chest up and stand by pushing the floor away.</p>
             <div class="video-wrap">
               <iframe data-src="https://www.youtube.com/embed/MeIiIdhvXT4" title="Goblet squat demonstration" allowfullscreen loading="lazy"></iframe>
             </div>
           </div>
         </details>
 
-        <details class="exercise" id="ex-press">
-          <summary>
-            <span class="exercise-name">Overhead press</span>
-            <span class="exercise-toggle" aria-hidden="true">+</span>
-          </summary>
-          <div class="exercise-body">
-            <p>Hold dumbbells at shoulder height. Brace your stomach and press them overhead without leaning back. Lower under control.</p>
-            <div class="video-wrap">
-              <iframe data-src="https://www.youtube.com/embed/qEwKCR5JCog" title="Overhead press demonstration" allowfullscreen loading="lazy"></iframe>
-            </div>
-          </div>
-        </details>
-
         <details class="exercise" id="ex-row">
           <summary>
-            <span class="exercise-name">One-arm row</span>
+            <span class="exercise-num">02</span>
+            <span class="exercise-name">One-Arm Row</span>
+            <span class="exercise-session">Session A</span>
             <span class="exercise-toggle" aria-hidden="true">+</span>
           </summary>
           <div class="exercise-body">
-            <p>Support one hand on a sturdy surface. Pull the weight towards your ribs, keep the movement controlled, and avoid twisting. If nothing feels stable, use a hip-hinged two-arm dumbbell row instead.</p>
+            <p class="exercise-desc">Support one hand on a sturdy surface. Pull the weight towards your ribs, keep the movement controlled, and avoid twisting. If nothing feels stable, use a hip-hinged two-arm dumbbell row instead.</p>
             <div class="video-wrap">
               <iframe data-src="https://www.youtube.com/embed/Di628SiVPAk" title="One-arm dumbbell row demonstration" allowfullscreen loading="lazy"></iframe>
             </div>
           </div>
         </details>
 
-        <details class="exercise" id="ex-rdl">
+        <details class="exercise" id="ex-press">
           <summary>
-            <span class="exercise-name">Romanian deadlift</span>
+            <span class="exercise-num">03</span>
+            <span class="exercise-name">Overhead Press</span>
+            <span class="exercise-session">Session A</span>
             <span class="exercise-toggle" aria-hidden="true">+</span>
           </summary>
           <div class="exercise-body">
-            <p>Hold weights in front of you. Push your hips backwards while keeping your back neutral. Feel the hamstring stretch, then stand tall.</p>
+            <p class="exercise-desc">Hold dumbbells at shoulder height. Brace your stomach and press them overhead without leaning back. Lower under control.</p>
             <div class="video-wrap">
-              <iframe data-src="https://www.youtube.com/embed/JCXUYuzwNrM" title="Romanian deadlift demonstration" allowfullscreen loading="lazy"></iframe>
-            </div>
-          </div>
-        </details>
-
-        <details class="exercise" id="ex-lunge">
-          <summary>
-            <span class="exercise-name">Reverse lunge</span>
-            <span class="exercise-toggle" aria-hidden="true">+</span>
-          </summary>
-          <div class="exercise-body">
-            <p>Step backwards, lower under control, then push through the front foot to stand. Start bodyweight only if needed.</p>
-            <div class="video-wrap">
-              <iframe data-src="https://www.youtube.com/embed/wrwwXE_x-pQ" title="Reverse lunge demonstration" allowfullscreen loading="lazy"></iframe>
-            </div>
-          </div>
-        </details>
-
-        <details class="exercise" id="ex-floor">
-          <summary>
-            <span class="exercise-name">Floor press</span>
-            <span class="exercise-toggle" aria-hidden="true">+</span>
-          </summary>
-          <div class="exercise-body">
-            <p>Lie on the floor holding dumbbells. Press them up like a bench press. The floor limits shoulder strain and makes this safe without a spotter.</p>
-            <div class="video-wrap">
-              <iframe data-src="https://www.youtube.com/embed/uUGDRwge4F8" title="Floor press demonstration" allowfullscreen loading="lazy"></iframe>
+              <iframe data-src="https://www.youtube.com/embed/qEwKCR5JCog" title="Overhead press demonstration" allowfullscreen loading="lazy"></iframe>
             </div>
           </div>
         </details>
 
         <details class="exercise" id="ex-carry">
           <summary>
-            <span class="exercise-name">Farmer carry</span>
+            <span class="exercise-num">04</span>
+            <span class="exercise-name">Farmer Carry</span>
+            <span class="exercise-session">Session A</span>
             <span class="exercise-toggle" aria-hidden="true">+</span>
           </summary>
           <div class="exercise-body">
-            <p>Pick up weights, stand tall, shoulders back, core tight, and walk slowly. Trains grip, posture, trunk stability, and mental resilience.</p>
+            <p class="exercise-desc">Pick up weights, stand tall, shoulders back, core tight, and walk slowly. Trains grip, posture, trunk stability, and mental resilience.</p>
             <div class="video-wrap">
               <iframe data-src="https://www.youtube.com/embed/Fkzk_RqlYig" title="Farmer carry demonstration" allowfullscreen loading="lazy"></iframe>
             </div>
           </div>
         </details>
 
-        <details class="exercise" id="ex-swing">
+        <details class="exercise" id="ex-rdl">
           <summary>
-            <span class="exercise-name">Kettlebell swing</span>
+            <span class="exercise-num">05</span>
+            <span class="exercise-name">Romanian Deadlift</span>
+            <span class="exercise-session">Session B</span>
             <span class="exercise-toggle" aria-hidden="true">+</span>
           </summary>
           <div class="exercise-body">
-            <p>This is a hip hinge, not a squat. The hips drive the bell forward — arms stay relaxed like hooks. Learn this slowly before adding to your sessions.</p>
+            <p class="exercise-desc">Hold weights in front of you. Push your hips backwards while keeping your back neutral. Feel the hamstring stretch, then stand tall.</p>
+            <div class="video-wrap">
+              <iframe data-src="https://www.youtube.com/embed/JCXUYuzwNrM" title="Romanian deadlift demonstration" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise" id="ex-floor">
+          <summary>
+            <span class="exercise-num">06</span>
+            <span class="exercise-name">Floor Press</span>
+            <span class="exercise-session">Session B</span>
+            <span class="exercise-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="exercise-body">
+            <p class="exercise-desc">Lie on the floor holding dumbbells. Press them up like a bench press. The floor limits shoulder strain and makes this safe without a spotter.</p>
+            <div class="video-wrap">
+              <iframe data-src="https://www.youtube.com/embed/uUGDRwge4F8" title="Floor press demonstration" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise" id="ex-lunge">
+          <summary>
+            <span class="exercise-num">07</span>
+            <span class="exercise-name">Reverse Lunge</span>
+            <span class="exercise-session">Session B</span>
+            <span class="exercise-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="exercise-body">
+            <p class="exercise-desc">Step backwards, lower under control, then push through the front foot to stand. Start bodyweight only if needed.</p>
+            <div class="video-wrap">
+              <iframe data-src="https://www.youtube.com/embed/wrwwXE_x-pQ" title="Reverse lunge demonstration" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise" id="ex-swing">
+          <summary>
+            <span class="exercise-num">08</span>
+            <span class="exercise-name">Kettlebell Swing</span>
+            <span class="exercise-session">From Week 9</span>
+            <span class="exercise-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="exercise-body">
+            <p class="exercise-desc">This is a hip hinge, not a squat. The hips drive the bell forward — arms stay relaxed like hooks. Learn this slowly before adding to your sessions.</p>
             <div class="video-wrap">
               <iframe data-src="https://www.youtube.com/embed/YSxHifyI6s8" title="Kettlebell swing demonstration" allowfullscreen loading="lazy"></iframe>
             </div>
@@ -1111,40 +1296,39 @@
       </div>
     </section>
 
-    <!-- TRACKER -->
+    <!-- 05 TRACKER -->
     <section id="tracker">
+      <span class="section-wm" aria-hidden="true">05</span>
       <div class="section-head">
-        <div class="section-label">Progress</div>
-        <h2 class="section-title">Weekly tracker</h2>
+        <div class="section-eyebrow"><span class="section-num-label">05 —</span>&nbsp;Progress</div>
+        <h2 class="section-title">Weekly Tracker</h2>
         <p class="section-lead">Ticks are stored on this device only. Clearing browser storage clears the tracker.</p>
       </div>
-
-      <div class="tracker-header">
-        <div class="progress-area" aria-live="polite">
-          <div class="progress-meta">
-            <span class="progress-count" id="progressText">0 of 96 sessions complete</span>
-            <span class="progress-pct" id="progressPercent">0%</span>
+      <div class="tracker-meta">
+        <div class="tracker-progress" aria-live="polite">
+          <div class="tracker-progress-head">
+            <span class="tracker-count" id="progressText">0 of 96 sessions complete</span>
+            <span class="tracker-pct" id="progressPercent">0%</span>
           </div>
           <div class="progress-track" aria-hidden="true">
             <div class="progress-fill" id="progressFill"></div>
           </div>
         </div>
-        <button class="btn btn-ghost" type="button" id="resetButton">Reset tracker</button>
+        <button class="btn btn-outline" type="button" id="resetButton">Reset tracker</button>
       </div>
-
       <div class="weeks-grid" id="trackerGrid"></div>
     </section>
 
-    <!-- REMINDERS -->
+    <!-- 06 REMINDERS -->
     <section id="reminders">
+      <span class="section-wm" aria-hidden="true">06</span>
       <div class="section-head">
-        <div class="section-label">Calendar</div>
-        <h2 class="section-title">Reminder notifications</h2>
+        <div class="section-eyebrow"><span class="section-num-label">06 —</span>&nbsp;Calendar</div>
+        <h2 class="section-title">Reminder Notifications</h2>
         <p class="section-lead">Generate a calendar file for the full 24-week plan and import it into Apple Calendar, Google Calendar, or Outlook.</p>
       </div>
-
       <div class="reminder-layout">
-        <div class="reminder-info">
+        <div class="reminder-text">
           <h3>How it works</h3>
           <p>The calendar includes Monday, Wednesday, Friday, and optional Sunday sessions. Core sessions alternate A/B across the full plan with a 15-minute reminder before each workout.</p>
           <p>Choose the Monday you want to start on. If you pick a different day, the file will automatically move the start to the next Monday.</p>
@@ -1164,24 +1348,41 @@
       </div>
     </section>
 
-    <!-- RULES -->
+    <!-- 07 RULES -->
     <section id="rules">
+      <span class="section-wm" aria-hidden="true">07</span>
       <div class="section-head">
-        <div class="section-label">Guidelines</div>
-        <h2 class="section-title">Progression rules</h2>
+        <div class="section-eyebrow"><span class="section-num-label">07 —</span>&nbsp;Guidelines</div>
+        <h2 class="section-title">Progression Rules</h2>
         <p class="section-lead">The rules keep the plan boring in the best way — steady, repeatable, and hard to derail.</p>
       </div>
-
       <ol class="rules-list">
-        <li><span class="rule-num" aria-hidden="true">01</span><span>Start lighter than your ego wants.</span></li>
-        <li><span class="rule-num" aria-hidden="true">02</span><span>When all reps feel easy for two sessions, increase reps before increasing weight.</span></li>
-        <li><span class="rule-num" aria-hidden="true">03</span><span>When you can do 12 good reps, increase the weight slightly and return to 8 reps.</span></li>
-        <li><span class="rule-num" aria-hidden="true">04</span><span>Never progress a movement that feels technically messy.</span></li>
-        <li><span class="rule-num" aria-hidden="true">05</span><span>With cycling-heavy weeks, do two sessions rather than forcing four.</span></li>
-        <li><span class="rule-num" aria-hidden="true">06</span><span>The programme succeeds when it becomes boringly repeatable.</span></li>
+        <li class="rule-item">
+          <span class="rule-num" aria-hidden="true">01</span>
+          <span class="rule-text">Start lighter than your ego wants.</span>
+        </li>
+        <li class="rule-item">
+          <span class="rule-num" aria-hidden="true">02</span>
+          <span class="rule-text">When all reps feel easy for two sessions, increase reps before increasing weight.</span>
+        </li>
+        <li class="rule-item">
+          <span class="rule-num" aria-hidden="true">03</span>
+          <span class="rule-text">When you can do 12 good reps, increase the weight slightly and return to 8 reps.</span>
+        </li>
+        <li class="rule-item">
+          <span class="rule-num" aria-hidden="true">04</span>
+          <span class="rule-text">Never progress a movement that feels technically messy.</span>
+        </li>
+        <li class="rule-item">
+          <span class="rule-num" aria-hidden="true">05</span>
+          <span class="rule-text">With cycling-heavy weeks, do two sessions rather than forcing four.</span>
+        </li>
+        <li class="rule-item">
+          <span class="rule-num" aria-hidden="true">06</span>
+          <span class="rule-text">The programme succeeds when it becomes boringly repeatable.</span>
+        </li>
       </ol>
-
-      <div class="alert" style="margin-top:1.5rem;">
+      <div class="alert" style="margin-top:1.5rem;" role="alert">
         <span class="alert-icon" aria-hidden="true">⚡</span>
         <p><strong>Minimum effective week:</strong> One Session A and one Session B. That is the fallback plan during busy weeks.</p>
       </div>
@@ -1194,7 +1395,7 @@
   </footer>
 
   <script>
-    /* ── lazy-load YouTube iframes ── */
+    /* ── exercise accordions ── */
     document.querySelectorAll(".exercise").forEach((details) => {
       details.addEventListener("toggle", function onToggle() {
         if (!details.open) return;
@@ -1203,8 +1404,6 @@
           iframe.src = iframe.dataset.src;
           iframe.removeAttribute("data-src");
         }
-        const toggle = details.querySelector(".exercise-toggle");
-        if (toggle) toggle.textContent = details.open ? "−" : "+";
         details.removeEventListener("toggle", onToggle);
       });
       details.addEventListener("toggle", () => {
@@ -1214,13 +1413,15 @@
     });
 
     /* ── tracker ── */
-    const trackerGrid    = document.getElementById("trackerGrid");
-    const progressText   = document.getElementById("progressText");
+    const trackerGrid     = document.getElementById("trackerGrid");
+    const progressText    = document.getElementById("progressText");
     const progressPercent = document.getElementById("progressPercent");
-    const progressFill   = document.getElementById("progressFill");
-    const resetButton    = document.getElementById("resetButton");
-    const days = ["Mon", "Wed", "Fri", "Sun (opt)"];
-    const totalSessions  = 24 * days.length;
+    const progressFill    = document.getElementById("progressFill");
+    const sidebarFill     = document.getElementById("sidebarFill");
+    const sidebarPct      = document.getElementById("sidebarPct");
+    const resetButton     = document.getElementById("resetButton");
+    const days            = ["Mon", "Wed", "Fri", "Sun (opt)"];
+    const totalSessions   = 24 * days.length;
 
     function updateProgress() {
       const completed = document.querySelectorAll("#trackerGrid input:checked").length;
@@ -1228,6 +1429,8 @@
       progressText.textContent    = `${completed} of ${totalSessions} sessions complete`;
       progressPercent.textContent = `${percent}%`;
       progressFill.style.width    = `${percent}%`;
+      sidebarFill.style.width     = `${percent}%`;
+      sidebarPct.textContent      = `${percent}%`;
 
       document.querySelectorAll(".week-card").forEach((card) => {
         const checked = card.querySelectorAll("input:checked").length;
@@ -1240,11 +1443,11 @@
       const card = document.createElement("article");
       card.className = "week-card";
 
-      const header = document.createElement("div");
+      const header  = document.createElement("div");
       header.className = "week-header";
-      const numEl = document.createElement("span");
+      const numEl   = document.createElement("span");
       numEl.className = "week-num";
-      numEl.textContent = `Wk ${week}`;
+      numEl.textContent = week;
       const countEl = document.createElement("span");
       countEl.className = "week-count";
       countEl.textContent = "0/4";
@@ -1285,9 +1488,25 @@
 
     updateProgress();
 
+    /* ── nav active state ── */
+    const navLinks = document.querySelectorAll("[data-nav]");
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => {
+            link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+
+    sections.forEach((s) => observer.observe(s));
+
     /* ── calendar generation ── */
-    const calendarForm    = document.getElementById("calendarForm");
-    const startDateInput  = document.getElementById("startDate");
+    const calendarForm      = document.getElementById("calendarForm");
+    const startDateInput    = document.getElementById("startDate");
     const reminderTimeInput = document.getElementById("reminderTime");
 
     const sessionNotes = {
@@ -1349,22 +1568,16 @@
     function foldLine(line) {
       const MAX = 75;
       if (line.length <= MAX) return line;
-      let out = "";
-      let pos = 0;
+      let out = "", pos = 0;
       while (pos < line.length) {
-        if (pos === 0) {
-          out += line.slice(0, MAX);
-          pos = MAX;
-        } else {
-          out += "\r\n " + line.slice(pos, pos + MAX - 1);
-          pos += MAX - 1;
-        }
+        if (pos === 0) { out += line.slice(0, MAX); pos = MAX; }
+        else { out += "\r\n " + line.slice(pos, pos + MAX - 1); pos += MAX - 1; }
       }
       return out;
     }
 
     function buildEvent(uid, dtstamp, start, end, summary, description) {
-      const lines = [
+      return [
         "BEGIN:VEVENT",
         `UID:${uid}`,
         `DTSTAMP:${dtstamp}`,
@@ -1378,15 +1591,14 @@
         `DESCRIPTION:${escapeIcal(summary)}`,
         "END:VALARM",
         "END:VEVENT"
-      ];
-      return lines.map(foldLine).join("\r\n");
+      ].map(foldLine).join("\r\n");
     }
 
     function buildCalendarFile(startDateValue, timeValue) {
-      const [hours, minutes]   = timeValue.split(":").map(Number);
-      const programmeStart     = nextMonday(new Date(`${startDateValue}T00:00:00`));
-      const dtstamp            = formatIcalLocal(new Date()).replace(/[-:]/g, "");
-      const coreDayOffsets     = [0, 2, 4];
+      const [hours, minutes] = timeValue.split(":").map(Number);
+      const programmeStart  = nextMonday(new Date(`${startDateValue}T00:00:00`));
+      const dtstamp         = formatIcalLocal(new Date()).replace(/[-:]/g, "");
+      const coreDayOffsets  = [0, 2, 4];
 
       const header = [
         "BEGIN:VCALENDAR",
@@ -1408,20 +1620,18 @@
           const endsAt = new Date(startsAt);
           endsAt.setMinutes(endsAt.getMinutes() + 20);
 
-          const description = [
-            `Six-Month Strength Programme - Week ${week}`,
-            ...sessionNotes[sessionName],
-            "",
-            "Aim: finish with 2-3 good reps in reserve."
-          ].join("\n");
-
           events.push(buildEvent(
             `strength-w${week}-d${offset}@drhammadkhan.github.io`,
             dtstamp,
             formatIcalLocal(startsAt),
             formatIcalLocal(endsAt),
             `Week ${week}: ${sessionName}`,
-            description
+            [
+              `Six-Month Strength Programme - Week ${week}`,
+              ...sessionNotes[sessionName],
+              "",
+              "Aim: finish with 2-3 good reps in reserve."
+            ].join("\n")
           ));
           workoutIndex++;
         });
@@ -1432,20 +1642,18 @@
         const optEnd = new Date(optAt);
         optEnd.setMinutes(optEnd.getMinutes() + 20);
 
-        const optDesc = [
-          `Six-Month Strength Programme - Week ${week}`,
-          ...sessionNotes["Optional Session"],
-          "",
-          "Aim: finish feeling better than you started."
-        ].join("\n");
-
         events.push(buildEvent(
           `strength-w${week}-d6@drhammadkhan.github.io`,
           dtstamp,
           formatIcalLocal(optAt),
           formatIcalLocal(optEnd),
           `Week ${week}: Optional Session`,
-          optDesc
+          [
+            `Six-Month Strength Programme - Week ${week}`,
+            ...sessionNotes["Optional Session"],
+            "",
+            "Aim: finish feeling better than you started."
+          ].join("\n")
         ));
       }
 
